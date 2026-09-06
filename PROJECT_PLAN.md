@@ -1163,9 +1163,9 @@ python scripts/validate_problem_catalog.py
 
 #### 当前状态
 
-```text
-下一阶段
-```
+**阶段状态：已完成（2026-09-07）**
+
+已完成 20 题候选矩阵、8 题 MVP 冻结、12 题正式版扩展规划、E1-E8 错误覆盖和标注规范。阶段一设计详见 [stage1_problem_selection.md](docs/planning/stage1_problem_selection.md)。
 
 ---
 
