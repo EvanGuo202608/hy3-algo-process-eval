@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "algotrace-hy3"
+version = "0.2.0"
+description = "Hy3-based process evaluation and error localization for algorithm-contest solutions."
+readme = "README.md"
+requires-python = ">=3.9"
+authors = [{ name = "Guoyang Guo" }]
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+
+[project.scripts]
+algotrace-hy3 = "algotrace_hy3.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+

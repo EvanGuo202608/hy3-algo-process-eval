@@ -1,0 +1,35 @@
+{
+  "problem_id": "A01-pack-cost",
+  "problem_understanding": "Need to buy enough pencils with one package type.",
+  "steps": [
+    {
+      "step_id": 1,
+      "kind": "observation",
+      "claim": "For a package with count c, floor(n / c) packages are enough.",
+      "justification": "This ignores the remainder.",
+      "depends_on": []
+    },
+    {
+      "step_id": 2,
+      "kind": "algorithm",
+      "claim": "Use floor division for all three package types and take the minimum cost.",
+      "justification": "The smallest cost should be optimal.",
+      "depends_on": [1]
+    },
+    {
+      "step_id": 3,
+      "kind": "complexity",
+      "claim": "The algorithm is O(1).",
+      "justification": "Only three package types are checked.",
+      "depends_on": [2]
+    }
+  ],
+  "algorithm": "Use n / count for each package type and take the minimum.",
+  "correctness_argument": "This is invalid when n is not divisible by count.",
+  "time_complexity": "O(1)",
+  "space_complexity": "O(1)",
+  "boundary_cases": ["exact division only"],
+  "code_language": "cpp17",
+  "code": "#include <algorithm>\n#include <climits>\n#include <iostream>\nusing namespace std;\nint main(){ long long n; if(!(cin>>n)) return 0; long long ans=LLONG_MAX; for(int i=0;i<3;i++){ long long c,p; cin>>c>>p; long long k=n/c; ans=min(ans,k*p);} cout<<ans<<'\\n'; return 0; }\n",
+  "final_output_or_verdict": "May output too small a cost on non-exact division cases."
+}

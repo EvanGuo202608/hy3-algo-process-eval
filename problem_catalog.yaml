@@ -1,0 +1,63 @@
+catalog_version: "1.0"
+project: "AlgoTrace-Hy3"
+repository: "https://github.com/EvanGuo202608/hy3-algo-process-eval"
+author:
+  name: "郭昊杨"
+  school: "福州三中"
+  declaration: "个人/活动作品，非腾讯官方发布"
+verified_on: "2026-09-07"
+source_policy:
+  discovery: "使用洛谷官方页面检索题目、难度和来源"
+  repository_content: "仅保存来源元数据、自写摘要或等价形式化规格、自写参考解和独立生成测试"
+  prohibited:
+    - "洛谷私有测试数据"
+    - "批量抓取的题面或数据"
+    - "未经许可的完整题面和图片"
+    - "第三方题解全文"
+internal_levels:
+  A: "单一算法核心，重点评估题意与边界"
+  B: "标准算法加不变量、交换论证或单调性"
+  C: "状态设计、图模型或数据结构，多步骤依赖"
+  D: "组合算法或实现细节密集，首错跨步骤传播"
+candidates:
+  - {candidate_id: C01, problem_id: P1909, title: "买铅笔", url: "https://www.luogu.com.cn/problem/P1909", luogu_reference: "入门", algorithms: [enumeration, integer_ceiling], internal_level: A, error_types: [E1, E5, E8], score: 10, selection: mvp, internal_id: A01-pack-cost}
+  - {candidate_id: C02, problem_id: P1047, title: "校门外的树", url: "https://www.luogu.com.cn/problem/P1047", luogu_reference: "入门", algorithms: [marking, difference_array], internal_level: A, error_types: [E1, E5, E6], score: 10, selection: mvp, internal_id: A02-interval-removal}
+  - {candidate_id: C03, problem_id: P1980, title: "计数问题", url: "https://www.luogu.com.cn/problem/P1980", luogu_reference: "入门", algorithms: [digit_enumeration], internal_level: A, error_types: [E1, E5], score: 7, selection: reserve}
+  - {candidate_id: C04, problem_id: P5015, title: "标题统计", url: "https://www.luogu.com.cn/problem/P5015", luogu_reference: "入门", algorithms: [string_scan], internal_level: A, error_types: [E1, E5], score: 6, selection: reserve}
+  - {candidate_id: C05, problem_id: P1094, title: "纪念品分组", url: "https://www.luogu.com.cn/problem/P1094", luogu_reference: "普及-", algorithms: [sorting, two_pointers, greedy], internal_level: B, error_types: [E3, E4, E5], score: 10, selection: mvp, internal_id: B01-pairing}
+  - {candidate_id: C06, problem_id: P1873, title: "砍树", url: "https://www.luogu.com.cn/problem/P1873", luogu_reference: "普及-", algorithms: [binary_search_on_answer], internal_level: B, error_types: [E3, E4, E5], score: 10, selection: mvp, internal_id: B02-cut-height}
+  - {candidate_id: C07, problem_id: P1540, title: "机器翻译", url: "https://www.luogu.com.cn/problem/P1540", luogu_reference: "普及-", algorithms: [queue, set], internal_level: B, error_types: [E1, E5, E6], score: 8, selection: reserve}
+  - {candidate_id: C08, problem_id: P1030, title: "求先序排列", url: "https://www.luogu.com.cn/problem/P1030", luogu_reference: "普及-", algorithms: [recursion, binary_tree_traversal], internal_level: B, error_types: [E2, E5, E6], score: 8, selection: reserve}
+  - {candidate_id: C09, problem_id: P1090, title: "合并果子", url: "https://www.luogu.com.cn/problem/P1090", luogu_reference: "普及", algorithms: [priority_queue, greedy], internal_level: B, error_types: [E3, E4, E5], score: 9, selection: formal_extension, internal_id: B03-merge-cost}
+  - {candidate_id: C10, problem_id: P2678, title: "跳石头", url: "https://www.luogu.com.cn/problem/P2678", luogu_reference: "普及", algorithms: [binary_search_on_answer, greedy_check], internal_level: B, error_types: [E3, E5], score: 8, selection: reserve}
+  - {candidate_id: C11, problem_id: P1083, title: "借教室", url: "https://www.luogu.com.cn/problem/P1083", luogu_reference: "普及", algorithms: [binary_search, difference_array], internal_level: C, error_types: [E3, E4, E5], score: 8, selection: reserve}
+  - {candidate_id: C12, problem_id: P2058, title: "海港", url: "https://www.luogu.com.cn/problem/P2058", luogu_reference: "普及", algorithms: [sliding_window, counting], internal_level: C, error_types: [E1, E5, E6], score: 8, selection: reserve}
+  - {candidate_id: C13, problem_id: P8816, title: "上升点列", url: "https://www.luogu.com.cn/problem/P8816", luogu_reference: "普及", algorithms: [sorting, dynamic_programming], internal_level: C, error_types: [E2, E3, E5], score: 10, selection: mvp, internal_id: C01-rising-points}
+  - {candidate_id: C14, problem_id: P3366, title: "最小生成树", url: "https://www.luogu.com.cn/problem/P3366", luogu_reference: "模板题；颜色单独记录", algorithms: [kruskal, disjoint_set_union], internal_level: C, error_types: [E2, E3, E5, E6], score: 10, selection: mvp, internal_id: C02-minimum-network}
+  - {candidate_id: C15, problem_id: P3373, title: "线段树 2", url: "https://www.luogu.com.cn/problem/P3373", luogu_reference: "普及+/提高-", algorithms: [segment_tree, lazy_propagation, affine_composition], internal_level: D, error_types: [E4, E5, E6], score: 10, selection: mvp, internal_id: D01-range-affine-sum}
+  - {candidate_id: C16, problem_id: P5658, title: "括号树", url: "https://www.luogu.com.cn/problem/P5658", luogu_reference: "普及+/提高-", algorithms: [tree_dp, stack, rollback], internal_level: C, error_types: [E2, E3, E6], score: 9, selection: formal_extension, internal_id: C04-bracket-tree}
+  - {candidate_id: C17, problem_id: P7074, title: "方格取数", url: "https://www.luogu.com.cn/problem/P7074", luogu_reference: "普及+/提高-", algorithms: [dynamic_programming, directional_scan], internal_level: C, error_types: [E2, E3, E5], score: 9, selection: formal_extension, internal_id: C03-grid-collection}
+  - {candidate_id: C18, problem_id: P4170, title: "涂色", url: "https://www.luogu.com.cn/problem/P4170", luogu_reference: "提高", algorithms: [interval_dp], internal_level: D, error_types: [E2, E3, E5], score: 8, selection: reserve}
+  - {candidate_id: C19, problem_id: P2680, title: "运输计划", url: "https://www.luogu.com.cn/problem/P2680", luogu_reference: "提高", algorithms: [lca, tree_difference, binary_search_on_answer], internal_level: D, error_types: [E2, E3, E4, E6], score: 10, selection: mvp, internal_id: D02-route-upgrade}
+  - {candidate_id: C20, problem_id: P5022, title: "旅行", url: "https://www.luogu.com.cn/problem/P5022", luogu_reference: "提高", algorithms: [graph_search, unicyclic_graph], internal_level: D, error_types: [E2, E3, E6, E7], score: 9, selection: formal_extension, internal_id: D03-travel-order}
+mvp_order:
+  - A01-pack-cost
+  - A02-interval-removal
+  - B01-pairing
+  - B02-cut-height
+  - C01-rising-points
+  - C02-minimum-network
+  - D01-range-affine-sum
+  - D02-route-upgrade
+formal_extension_order:
+  - B03-merge-cost
+  - C03-grid-collection
+  - C04-bracket-tree
+  - D03-travel-order
+status:
+  selection_complete: true
+  implementations_complete: false
+  tests_complete: false
+  gold_traces_complete: false
+  real_hy3_experiments_complete: false
+

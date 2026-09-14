@@ -1,0 +1,42 @@
+{
+  "problem_id": "A01-pack-cost",
+  "problem_understanding": "Need to buy at least n pencils by choosing one of three package types and buying enough packages of that type with minimum total cost.",
+  "steps": [
+    {
+      "step_id": 1,
+      "kind": "observation",
+      "claim": "For a fixed package type with count c, the needed package count is ceil(n / c).",
+      "justification": "Buying fewer packages gives fewer than n pencils, while this number is the smallest integer that reaches n.",
+      "depends_on": []
+    },
+    {
+      "step_id": 2,
+      "kind": "algorithm",
+      "claim": "Compute ceil(n / c) * price for each of the three package types and take the minimum.",
+      "justification": "The specification allows choosing one package type, and there are only three choices.",
+      "depends_on": [1]
+    },
+    {
+      "step_id": 3,
+      "kind": "complexity",
+      "claim": "The algorithm runs in O(1) time and uses O(1) extra space.",
+      "justification": "It performs a constant amount of arithmetic for exactly three package types.",
+      "depends_on": [2]
+    },
+    {
+      "step_id": 4,
+      "kind": "boundary",
+      "claim": "The formula handles n = 1, exact division, and non-exact division.",
+      "justification": "The expression (n + c - 1) / c implements integer ceiling for positive integers.",
+      "depends_on": [1]
+    }
+  ],
+  "algorithm": "Enumerate the three package types. For each type compute packages = (n + count - 1) / count, cost = packages * price, and output the minimum cost.",
+  "correctness_argument": "For each fixed type, ceiling division gives the unique minimum number of packages that buys at least n pencils. Since every valid strategy chooses one of the three types, the minimum of these three costs is optimal.",
+  "time_complexity": "O(1)",
+  "space_complexity": "O(1)",
+  "boundary_cases": ["n = 1", "n divisible by count", "n not divisible by count"],
+  "code_language": "cpp17",
+  "code": "#include <algorithm>\n#include <climits>\n#include <iostream>\nusing namespace std;\nint main(){ long long n; if(!(cin>>n)) return 0; long long ans=LLONG_MAX; for(int i=0;i<3;i++){ long long c,p; cin>>c>>p; long long k=(n+c-1)/c; ans=min(ans,k*p);} cout<<ans<<'\\n'; return 0; }\n",
+  "final_output_or_verdict": "Outputs the minimum total cost."
+}
