@@ -6,7 +6,7 @@
 > **任务方向：** 犀牛鸟开源·实战任务 2「可验证场景：过程评估与错误定位」—算法竞赛  
 > **规划版本：** v1.0  
 > **版本日期：** 2026-09-06  
-> **当前状态：** 阶段 0 和阶段 1 已完成；公开仓库已创建；阶段 2 已完成 A01 离线纵向切片，工程骨架继续扩展中
+> **当前状态：** 阶段 0 和阶段 1 已完成；公开仓库已创建；阶段 2 已完成 A01/A02 离线纵向切片，工程骨架继续扩展中
 > **项目声明：** 本项目是郭昊杨参与犀牛鸟开源实战任务的个人/活动作品，非腾讯官方发布。
 
 ---
@@ -994,8 +994,8 @@ hy3-algo-process-eval/
 │   └── planning/
 │       ├── README.md
 │       ├── requirement_traceability.md
-│       ├── 郭昊杨_AlgoTrace-Hy3_阶段0需求追踪与项目规划_v1.docx
-│       └── 郭昊杨_AlgoTrace-Hy3_阶段0需求追踪与项目规划_v1.pdf
+│       ├── stage0_requirement_traceability_plan_v1.docx
+│       └── stage0_requirement_traceability_plan_v1.pdf
 │
 ├── src/
 │   └── algotrace_hy3/
@@ -1211,7 +1211,7 @@ python3 -m unittest discover -s tests -q
 #### 当前状态
 
 ```text
-进行中：已完成 A01-pack-cost 离线纵向切片、结构化解答校验、规则评估、CLI demo 和无密钥测试
+进行中：已完成 A01-pack-cost 与 A02-interval-removal 离线纵向切片、结构化解答校验、规则评估、CLI demo 和无密钥测试
 ```
 
 ---
@@ -1605,9 +1605,10 @@ Apache License 2.0
 - [x] 创建 `.gitignore`；
 - [x] 创建 `.env.example`；
 - [x] 建立第一题 A01 纵向切片；
+- [x] 建立第二题 A02 纵向切片；
 - [x] 添加无密钥测试；
 - [x] 添加基础 CI；
-- [ ] 扩展 A02 题目目录、参考解、生成器和 fixtures；
+- [ ] 扩展 B01 题目目录、参考解、生成器和 fixtures；
 - [ ] 实现更完整的受限执行器安全说明；
 - [ ] 接入 Hy3 在线调用并保存脱敏日志。
 
