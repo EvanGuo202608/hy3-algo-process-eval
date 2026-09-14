@@ -994,8 +994,8 @@ hy3-algo-process-eval/
 │   └── planning/
 │       ├── README.md
 │       ├── requirement_traceability.md
-│       ├── 郭昊杨_AlgoTrace-Hy3_阶段0需求追踪与项目规划_v1.docx
-│       └── 郭昊杨_AlgoTrace-Hy3_阶段0需求追踪与项目规划_v1.pdf
+│       ├── stage0_requirement_traceability_plan_v1.docx
+│       └── stage0_requirement_traceability_plan_v1.pdf
 │
 ├── src/
 │   └── algotrace_hy3/

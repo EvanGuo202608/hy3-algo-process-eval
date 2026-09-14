@@ -5,8 +5,8 @@
 ## 文件说明
 
 - `requirement_traceability.md`：任务书需求追踪、阶段交付物和验收标准；
-- `郭昊杨_AlgoTrace-Hy3_阶段0需求追踪与项目规划_v1.docx`：阶段 0 Word 正式版；
-- `郭昊杨_AlgoTrace-Hy3_阶段0需求追踪与项目规划_v1.pdf`：阶段 0 PDF 正式版；
+- `stage0_requirement_traceability_plan_v1.docx`：阶段 0 Word 正式版；
+- `stage0_requirement_traceability_plan_v1.pdf`：阶段 0 PDF 正式版；
 - `stage1_problem_selection.md`：阶段 1 选题与评测集设计 Markdown；
 - `stage1_problem_selection_v1.docx`：阶段 1 Word 正式版；
 - `stage1_problem_selection_v1.pdf`：阶段 1 PDF 正式版。
