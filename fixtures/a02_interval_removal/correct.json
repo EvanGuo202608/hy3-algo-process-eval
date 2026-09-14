@@ -1,0 +1,43 @@
+{
+  "problem_id": "A02-interval-removal",
+  "problem_understanding": "Positions are integers from 0 to L, and each closed interval removes all integer positions in it.",
+  "steps": [
+    {
+      "step_id": 1,
+      "kind": "observation",
+      "claim": "The road has L + 1 integer positions: 0, 1, ..., L.",
+      "justification": "Both endpoints 0 and L are included by the specification.",
+      "depends_on": []
+    },
+    {
+      "step_id": 2,
+      "kind": "algorithm",
+      "claim": "Mark every position from left to right inclusive for each removal interval.",
+      "justification": "The intervals are closed, so endpoints must also be removed; repeated marking handles overlaps.",
+      "depends_on": [1]
+    },
+    {
+      "step_id": 3,
+      "kind": "algorithm",
+      "claim": "Count positions that remain unmarked.",
+      "justification": "A position remains if and only if it was not covered by any removal interval.",
+      "depends_on": [2]
+    },
+    {
+      "step_id": 4,
+      "kind": "complexity",
+      "claim": "The algorithm runs in O(L + total interval length) time and O(L) space.",
+      "justification": "It stores one mark per position and scans covered positions.",
+      "depends_on": [2, 3]
+    }
+  ],
+  "algorithm": "Create a boolean array of size L + 1. For each interval [left, right], mark all positions left <= pos <= right. Count unmarked positions.",
+  "correctness_argument": "Each operation removes exactly the positions in its closed interval. Marking is idempotent, so overlaps do not change the result. The final count of unmarked positions is exactly the number of positions not removed by any operation.",
+  "time_complexity": "O(L + total_interval_length)",
+  "space_complexity": "O(L)",
+  "boundary_cases": ["m = 0", "L = 0", "full interval [0, L]", "overlapping intervals"],
+  "code_language": "cpp17",
+  "code": "#include <iostream>\n#include <vector>\nusing namespace std;\nint main(){ int L,m; if(!(cin>>L>>m)) return 0; vector<int> removed(L+1,0); for(int i=0;i<m;i++){ int l,r; cin>>l>>r; for(int p=l;p<=r;p++) removed[p]=1; } int ans=0; for(int p=0;p<=L;p++) if(!removed[p]) ans++; cout<<ans<<'\\n'; return 0; }\n",
+  "final_output_or_verdict": "Outputs the number of remaining positions."
+}
+

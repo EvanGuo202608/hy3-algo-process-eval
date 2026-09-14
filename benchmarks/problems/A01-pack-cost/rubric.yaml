@@ -1,0 +1,18 @@
+problem_id: A01-pack-cost
+must_have_steps:
+  - "Recognize that all bought packages must come from one package type."
+  - "Use ceiling division, not floor division, to buy at least n pencils."
+  - "Enumerate all three package types."
+  - "Take the minimum total cost."
+common_error_patterns:
+  - error_type: E1
+    description: "Allows mixing different package types even though the simplified spec chooses one type."
+  - error_type: E5
+    description: "Uses floor division and buys too few pencils."
+  - error_type: E8
+    description: "Claims the cheapest unit price is always enough without accounting for overbuying."
+gold_cases:
+  - fixtures/a01_pack_cost/correct.json
+  - fixtures/a01_pack_cost/wrong_process_right_code.json
+  - fixtures/a01_pack_cost/wrong_code_floor.json
+

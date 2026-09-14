@@ -1,0 +1,43 @@
+{
+  "problem_id": "A02-interval-removal",
+  "problem_understanding": "Remove positions covered by listed intervals and count what remains.",
+  "steps": [
+    {
+      "step_id": 1,
+      "kind": "observation",
+      "claim": "Each removal interval should be treated as an open interval and does not include endpoints.",
+      "justification": "The important positions are inside the interval, so endpoints can be ignored.",
+      "depends_on": []
+    },
+    {
+      "step_id": 2,
+      "kind": "algorithm",
+      "claim": "Mark the removed positions and then count unmarked positions.",
+      "justification": "Marking avoids double-counting overlaps.",
+      "depends_on": [1]
+    },
+    {
+      "step_id": 3,
+      "kind": "complexity",
+      "claim": "The algorithm is O(L + total interval length).",
+      "justification": "It scans a small marking array.",
+      "depends_on": [2]
+    },
+    {
+      "step_id": 4,
+      "kind": "implementation",
+      "claim": "The code marks endpoints too.",
+      "justification": "The loop condition is pos <= right.",
+      "depends_on": [1]
+    }
+  ],
+  "algorithm": "Mark positions and count the remaining ones.",
+  "correctness_argument": "The public reasoning incorrectly says endpoints are excluded, although the code uses inclusive marking.",
+  "time_complexity": "O(L + total_interval_length)",
+  "space_complexity": "O(L)",
+  "boundary_cases": ["endpoint intervals", "overlap"],
+  "code_language": "cpp17",
+  "code": "#include <iostream>\n#include <vector>\nusing namespace std;\nint main(){ int L,m; if(!(cin>>L>>m)) return 0; vector<int> removed(L+1,0); for(int i=0;i<m;i++){ int l,r; cin>>l>>r; for(int p=l;p<=r;p++) removed[p]=1; } int ans=0; for(int p=0;p<=L;p++) if(!removed[p]) ans++; cout<<ans<<'\\n'; return 0; }\n",
+  "final_output_or_verdict": "The code passes the tests, but the public process has an endpoint error."
+}
+

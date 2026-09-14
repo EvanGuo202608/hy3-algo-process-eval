@@ -1,0 +1,36 @@
+{
+  "problem_id": "A02-interval-removal",
+  "problem_understanding": "Remove interval lengths from the total number of positions.",
+  "steps": [
+    {
+      "step_id": 1,
+      "kind": "algorithm",
+      "claim": "For each interval, subtract right - left + 1 from L + 1.",
+      "justification": "This counts how many positions the interval removes.",
+      "depends_on": []
+    },
+    {
+      "step_id": 2,
+      "kind": "proof",
+      "claim": "Summing removed lengths gives the total number of removed positions.",
+      "justification": "Every interval contributes its own length.",
+      "depends_on": [1]
+    },
+    {
+      "step_id": 3,
+      "kind": "complexity",
+      "claim": "The algorithm is O(m).",
+      "justification": "It only scans the intervals.",
+      "depends_on": [1]
+    }
+  ],
+  "algorithm": "Subtract every interval length independently from L + 1.",
+  "correctness_argument": "This fails when intervals overlap because removed positions can be subtracted more than once.",
+  "time_complexity": "O(m)",
+  "space_complexity": "O(1)",
+  "boundary_cases": ["non-overlapping intervals"],
+  "code_language": "cpp17",
+  "code": "#include <iostream>\nusing namespace std;\nint main(){ int L,m; if(!(cin>>L>>m)) return 0; int ans=L+1; for(int i=0;i<m;i++){ int l,r; cin>>l>>r; ans -= (r-l+1); } cout<<ans<<'\\n'; return 0; }\n",
+  "final_output_or_verdict": "Fails on overlapping intervals."
+}
+

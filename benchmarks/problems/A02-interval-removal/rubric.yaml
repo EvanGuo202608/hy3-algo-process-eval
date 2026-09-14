@@ -1,0 +1,18 @@
+problem_id: A02-interval-removal
+must_have_steps:
+  - "Recognize positions are integers from 0 to L, inclusive."
+  - "Treat every removal interval as inclusive on both endpoints."
+  - "Avoid double-counting overlaps."
+  - "Count unremoved positions after all operations."
+common_error_patterns:
+  - error_type: E1
+    description: "Misreads the positions as 1..L instead of 0..L."
+  - error_type: E5
+    description: "Treats intervals as open or half-open and mishandles endpoints."
+  - error_type: E6
+    description: "Subtracts interval lengths independently and double-counts overlaps."
+gold_cases:
+  - fixtures/a02_interval_removal/correct.json
+  - fixtures/a02_interval_removal/wrong_process_right_code.json
+  - fixtures/a02_interval_removal/wrong_code_no_overlap.json
+

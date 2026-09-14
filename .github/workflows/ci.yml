@@ -1,0 +1,28 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  offline-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install C++ compiler
+        run: sudo apt-get update && sudo apt-get install -y g++
+      - name: Validate catalog
+        run: python3 scripts/validate_problem_catalog.py
+      - name: Reproduce A01 and A02 reference solutions
+        run: |
+          python3 scripts/reproduce_problem.py --problem A01-pack-cost
+          python3 scripts/reproduce_problem.py --problem A02-interval-removal
+      - name: Run offline unit tests
+        run: python3 -m unittest discover -s tests -q
+      - name: Run A01 demo
+        run: PYTHONPATH=src python3 -m algotrace_hy3 demo --problem A01-pack-cost
+      - name: Run A02 demo
+        run: PYTHONPATH=src python3 -m algotrace_hy3 demo --problem A02-interval-removal --fixture fixtures/a02_interval_removal/wrong_process_right_code.json
