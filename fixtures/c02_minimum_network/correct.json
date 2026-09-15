@@ -1,0 +1,50 @@
+{
+  "problem_id": "C02-minimum-network",
+  "problem_understanding": "Given an undirected weighted graph, find the minimum total weight needed to connect all vertices, or output orz if impossible.",
+  "steps": [
+    {
+      "step_id": 1,
+      "kind": "observation",
+      "claim": "A chosen edge is useful only if it connects two currently different connected components.",
+      "justification": "If both endpoints are already in the same component, adding the edge creates a cycle and does not improve connectivity.",
+      "depends_on": []
+    },
+    {
+      "step_id": 2,
+      "kind": "algorithm",
+      "claim": "Sort edges by increasing weight and scan them in that order.",
+      "justification": "Kruskal's algorithm considers the cheapest safe edge first.",
+      "depends_on": [1]
+    },
+    {
+      "step_id": 3,
+      "kind": "implementation",
+      "claim": "Use DSU to add an edge exactly when its two endpoints are in different components.",
+      "justification": "DSU maintains the components formed by selected edges and detects cycle-forming edges.",
+      "depends_on": [1, 2]
+    },
+    {
+      "step_id": 4,
+      "kind": "proof",
+      "claim": "The selected edges form a minimum spanning tree when n - 1 edges are used.",
+      "justification": "By the cut property, each selected cheapest safe edge can be part of some MST; repeating this preserves optimality.",
+      "depends_on": [2, 3]
+    },
+    {
+      "step_id": 5,
+      "kind": "boundary",
+      "claim": "If fewer than n - 1 edges are selected, the graph is disconnected and the answer is orz.",
+      "justification": "A connected graph on n vertices needs a spanning tree with exactly n - 1 selected edges.",
+      "depends_on": [3]
+    }
+  ],
+  "algorithm": "Kruskal's minimum spanning tree algorithm with DSU.",
+  "correctness_argument": "The algorithm only adds edges connecting different components. Edges are processed from small to large, and the cut property justifies that each chosen safe edge can appear in an MST. If n - 1 edges are chosen, all vertices are connected with minimum total weight; otherwise no spanning tree exists.",
+  "time_complexity": "O(m log m)",
+  "space_complexity": "O(n + m)",
+  "boundary_cases": ["n = 1", "disconnected graph", "parallel edges", "self loops", "cycle-forming cheap edges"],
+  "code_language": "cpp17",
+  "code": "#include <algorithm>\n#include <iostream>\n#include <numeric>\n#include <vector>\nusing namespace std;\nstruct Edge{int u,v; long long w;};\nstruct DSU{ vector<int> p,sz; DSU(int n):p(n+1),sz(n+1,1){ iota(p.begin(),p.end(),0); } int find(int x){ return p[x]==x?x:p[x]=find(p[x]); } bool unite(int a,int b){ a=find(a); b=find(b); if(a==b) return false; if(sz[a]<sz[b]) swap(a,b); p[b]=a; sz[a]+=sz[b]; return true; }};\nint main(){ ios::sync_with_stdio(false); cin.tie(nullptr); int n,m; if(!(cin>>n>>m)) return 0; vector<Edge> e(m); for(auto &x:e) cin>>x.u>>x.v>>x.w; sort(e.begin(),e.end(),[](const Edge&a,const Edge&b){return a.w<b.w;}); DSU dsu(n); long long total=0; int used=0; for(const auto &x:e){ if(dsu.unite(x.u,x.v)){ total+=x.w; used++; if(used==n-1) break; }} if(used==n-1) cout<<total<<'\\n'; else cout<<\"orz\\n\"; return 0; }\n",
+  "final_output_or_verdict": "Passes the offline tests."
+}
+

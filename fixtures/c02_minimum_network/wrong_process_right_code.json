@@ -1,0 +1,36 @@
+{
+  "problem_id": "C02-minimum-network",
+  "problem_understanding": "Find a low-cost set of edges connecting the graph.",
+  "steps": [
+    {
+      "step_id": 1,
+      "kind": "algorithm",
+      "claim": "The minimum network is obtained by taking the n - 1 smallest edges after sorting by weight.",
+      "justification": "Using the cheapest edges should minimize the total weight.",
+      "depends_on": []
+    },
+    {
+      "step_id": 2,
+      "kind": "proof",
+      "claim": "Cycle checks are unnecessary because a cheaper edge is always better than a more expensive edge.",
+      "justification": "Replacing expensive edges with cheap edges reduces cost.",
+      "depends_on": [1]
+    },
+    {
+      "step_id": 3,
+      "kind": "implementation",
+      "claim": "The code uses DSU to skip cycle-forming edges.",
+      "justification": "The implementation is the standard Kruskal algorithm.",
+      "depends_on": [1, 2]
+    }
+  ],
+  "algorithm": "The written explanation says to take the n - 1 smallest edges, while the code actually runs Kruskal with DSU.",
+  "correctness_argument": "The explanation is invalid because cheap cycle edges may not connect all vertices; the code itself is correct.",
+  "time_complexity": "O(m log m)",
+  "space_complexity": "O(n + m)",
+  "boundary_cases": ["cycle-forming cheap edges", "disconnected graph"],
+  "code_language": "cpp17",
+  "code": "#include <algorithm>\n#include <iostream>\n#include <numeric>\n#include <vector>\nusing namespace std;\nstruct Edge{int u,v; long long w;};\nstruct DSU{ vector<int> p,sz; DSU(int n):p(n+1),sz(n+1,1){ iota(p.begin(),p.end(),0); } int find(int x){ return p[x]==x?x:p[x]=find(p[x]); } bool unite(int a,int b){ a=find(a); b=find(b); if(a==b) return false; if(sz[a]<sz[b]) swap(a,b); p[b]=a; sz[a]+=sz[b]; return true; }};\nint main(){ ios::sync_with_stdio(false); cin.tie(nullptr); int n,m; if(!(cin>>n>>m)) return 0; vector<Edge> e(m); for(auto &x:e) cin>>x.u>>x.v>>x.w; sort(e.begin(),e.end(),[](const Edge&a,const Edge&b){return a.w<b.w;}); DSU dsu(n); long long total=0; int used=0; for(const auto &x:e){ if(dsu.unite(x.u,x.v)){ total+=x.w; used++; if(used==n-1) break; }} if(used==n-1) cout<<total<<'\\n'; else cout<<\"orz\\n\"; return 0; }\n",
+  "final_output_or_verdict": "Code passes, but the public reasoning is invalid because it ignores cycles."
+}
+

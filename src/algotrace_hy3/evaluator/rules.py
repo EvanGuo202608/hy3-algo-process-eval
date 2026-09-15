@@ -167,6 +167,38 @@ def evaluate_process_rules(solution: Dict[str, Any]) -> Dict[str, Any]:
                     "warnings": warnings,
                 }
 
+    if solution.get("problem_id") == "C02-minimum-network":
+        bad_markers = [
+            "n - 1 smallest edges",
+            "n-1 smallest edges",
+            "first n - 1 sorted edges",
+            "first n-1 sorted edges",
+            "cycle checks are unnecessary",
+            "cheapest edges should minimize",
+            "直接取最小的 n - 1",
+            "直接取最小的n-1",
+            "不需要判环",
+            "无需判环",
+        ]
+        for step_id, text in iter_step_text(solution):
+            lowered = text.lower()
+            if any(marker.lower() in lowered for marker in bad_markers):
+                return {
+                    "process_correct": False,
+                    "first_error_step": step_id,
+                    "primary_error_type": "E2",
+                    "secondary_error_types": ["E3", "E6"],
+                    "severity": "high",
+                    "confidence": 0.88,
+                    "evidence": (
+                        "C02 needs Kruskal's cycle check: an edge is selected only "
+                        "when it connects two different DSU components. Taking the "
+                        "n - 1 smallest edges or saying cycle checks are unnecessary "
+                        "can choose a cheap cycle and fail to connect all vertices."
+                    ),
+                    "warnings": warnings,
+                }
+
     return {
         "process_correct": True,
         "first_error_step": None,

@@ -1,0 +1,20 @@
+problem_id: C02-minimum-network
+must_have_steps:
+  - "Sort edges by nondecreasing weight."
+  - "Use disjoint-set union to test whether an edge connects two different components."
+  - "Add an edge only when it does not form a cycle."
+  - "After processing, output orz if fewer than n - 1 edges were used."
+common_error_patterns:
+  - error_type: E2
+    description: "Chooses the n - 1 smallest edges without checking whether they connect all vertices."
+  - error_type: E3
+    description: "Omits the cut/exchange argument or claims that every cheap edge should be selected."
+  - error_type: E5
+    description: "Forgets the disconnected graph case or mishandles n = 1."
+  - error_type: E6
+    description: "Does not skip cycle-forming edges or incorrectly implements DSU merge/find."
+gold_cases:
+  - fixtures/c02_minimum_network/correct.json
+  - fixtures/c02_minimum_network/wrong_process_right_code.json
+  - fixtures/c02_minimum_network/wrong_code_cycle_edges.json
+

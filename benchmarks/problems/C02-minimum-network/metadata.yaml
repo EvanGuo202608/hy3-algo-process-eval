@@ -1,0 +1,30 @@
+problem_id: C02-minimum-network
+title: Minimum Network
+source_platform: Luogu
+source_problem_id: P3366
+source_url: https://www.luogu.com.cn/problem/P3366
+source_note: "Used for discovery and difficulty reference only; repository stores a self-written MST specification and independent tests."
+license_or_usage_note: "Do not copy private tests or third-party solutions."
+accessed_at: "2026-09-15"
+difficulty:
+  external_label: "模板题；颜色单独记录"
+  internal_tier: C
+  reasoning: "Requires Kruskal's algorithm, disjoint-set union, cycle avoidance, and disconnected-graph handling."
+algorithms:
+  - kruskal
+  - disjoint_set_union
+  - minimum_spanning_tree
+expected_error_types:
+  - E2
+  - E3
+  - E5
+  - E6
+limits:
+  time_ms: 1000
+  memory_mb: 64
+reproducibility:
+  generator_seed: 20260906
+  reference_solution: true
+  checker: true
+  offline_tests: true
+

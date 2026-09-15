@@ -1,0 +1,36 @@
+{
+  "problem_id": "C02-minimum-network",
+  "problem_understanding": "Find the minimum total weight of edges to connect all vertices.",
+  "steps": [
+    {
+      "step_id": 1,
+      "kind": "observation",
+      "claim": "Edges that connect vertices already in the same component must be skipped.",
+      "justification": "They create cycles and do not help connect new vertices.",
+      "depends_on": []
+    },
+    {
+      "step_id": 2,
+      "kind": "algorithm",
+      "claim": "Sort edges by weight and use Kruskal with DSU.",
+      "justification": "The cheapest safe edge is selected at each step.",
+      "depends_on": [1]
+    },
+    {
+      "step_id": 3,
+      "kind": "implementation",
+      "claim": "Adding the first n - 1 sorted edges is equivalent to the DSU cycle check.",
+      "justification": "The sorted prefix should be the cheapest possible set.",
+      "depends_on": [1, 2]
+    }
+  ],
+  "algorithm": "Sort edges and incorrectly add the first n - 1 edges without DSU checks.",
+  "correctness_argument": "The high-level MST idea is correct, but the implementation violates the cycle-skipping requirement.",
+  "time_complexity": "O(m log m)",
+  "space_complexity": "O(m)",
+  "boundary_cases": ["cycle-forming cheap edges"],
+  "code_language": "cpp17",
+  "code": "#include <algorithm>\n#include <iostream>\n#include <vector>\nusing namespace std;\nstruct Edge{int u,v; long long w;};\nint main(){ ios::sync_with_stdio(false); cin.tie(nullptr); int n,m; if(!(cin>>n>>m)) return 0; vector<Edge> e(m); for(auto &x:e) cin>>x.u>>x.v>>x.w; sort(e.begin(),e.end(),[](const Edge&a,const Edge&b){return a.w<b.w;}); if(n==1){ cout<<0<<'\\n'; return 0; } if(m<n-1){ cout<<\"orz\\n\"; return 0; } long long total=0; for(int i=0;i<n-1;i++) total+=e[i].w; cout<<total<<'\\n'; return 0; }\n",
+  "final_output_or_verdict": "Fails when the cheapest edges form a cycle or when the graph is disconnected despite m >= n - 1."
+}
+
