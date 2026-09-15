@@ -1,0 +1,36 @@
+{
+  "problem_id": "C01-rising-points",
+  "problem_understanding": "Given n points, find the longest sequence whose coordinates increase.",
+  "steps": [
+    {
+      "step_id": 1,
+      "kind": "observation",
+      "claim": "The sequence must be strictly increasing in both x and y.",
+      "justification": "The specification uses < for both coordinates.",
+      "depends_on": []
+    },
+    {
+      "step_id": 2,
+      "kind": "algorithm",
+      "claim": "Use DP after sorting points.",
+      "justification": "dp[i] records the best sequence ending at i.",
+      "depends_on": [1]
+    },
+    {
+      "step_id": 3,
+      "kind": "implementation",
+      "claim": "Using <= in the transition is equivalent to strict increase after sorting.",
+      "justification": "Sorted order should prevent invalid transitions.",
+      "depends_on": [1, 2]
+    }
+  ],
+  "algorithm": "Sort points and run DP, but the implementation uses non-decreasing comparisons.",
+  "correctness_argument": "The stated strict condition is correct, but the implementation violates it.",
+  "time_complexity": "O(n^2)",
+  "space_complexity": "O(n)",
+  "boundary_cases": ["duplicates", "same x", "same y"],
+  "code_language": "cpp17",
+  "code": "#include <algorithm>\n#include <iostream>\n#include <utility>\n#include <vector>\nusing namespace std;\nint main(){ ios::sync_with_stdio(false); cin.tie(nullptr); int n; if(!(cin>>n)) return 0; vector<pair<long long,long long>> p(n); for(int i=0;i<n;i++) cin>>p[i].first>>p[i].second; sort(p.begin(),p.end()); vector<int> dp(n,1); int ans=1; for(int i=0;i<n;i++){ for(int j=0;j<i;j++){ if(p[j].first<=p[i].first && p[j].second<=p[i].second) dp[i]=max(dp[i],dp[j]+1); } ans=max(ans,dp[i]); } cout<<ans<<'\\n'; return 0; }\n",
+  "final_output_or_verdict": "Fails on equal-coordinate tests."
+}
+

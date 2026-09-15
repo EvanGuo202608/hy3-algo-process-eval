@@ -1,0 +1,43 @@
+{
+  "problem_id": "C01-rising-points",
+  "problem_understanding": "Given n points, find the longest sequence whose x and y coordinates are both strictly increasing.",
+  "steps": [
+    {
+      "step_id": 1,
+      "kind": "observation",
+      "claim": "A valid transition from point j to point i requires x_j < x_i and y_j < y_i.",
+      "justification": "The statement requires strict increase in both coordinates, so equal x or equal y cannot be adjacent in the chosen sequence.",
+      "depends_on": []
+    },
+    {
+      "step_id": 2,
+      "kind": "algorithm",
+      "claim": "Sort all points by x and then y, and define dp[i] as the longest valid sequence ending at point i.",
+      "justification": "After sorting, all earlier points are candidates, but the strict checks still decide whether a transition is legal.",
+      "depends_on": [1]
+    },
+    {
+      "step_id": 3,
+      "kind": "proof",
+      "claim": "For each i, dp[i] = 1 + max(dp[j]) over all previous legal predecessors j, or 1 if none exists.",
+      "justification": "The last predecessor of any optimal sequence ending at i must satisfy the strict coordinate inequalities, and the best such predecessor gives the optimal substructure.",
+      "depends_on": [1, 2]
+    },
+    {
+      "step_id": 4,
+      "kind": "complexity",
+      "claim": "The implementation runs in O(n^2) time and O(n) memory.",
+      "justification": "There are n states and each state scans all earlier states once.",
+      "depends_on": [2, 3]
+    }
+  ],
+  "algorithm": "Sort points and run O(n^2) dynamic programming for the longest sequence ending at each point.",
+  "correctness_argument": "Every valid sequence ending at point i either contains only i or extends a valid sequence ending at a previous point j with both coordinates smaller. Taking the maximum over all legal predecessors therefore considers exactly all valid last-step choices.",
+  "time_complexity": "O(n^2)",
+  "space_complexity": "O(n)",
+  "boundary_cases": ["single point", "duplicate points", "same x", "same y", "unsorted input"],
+  "code_language": "cpp17",
+  "code": "#include <algorithm>\n#include <iostream>\n#include <utility>\n#include <vector>\nusing namespace std;\nint main(){ ios::sync_with_stdio(false); cin.tie(nullptr); int n; if(!(cin>>n)) return 0; vector<pair<long long,long long>> p(n); for(int i=0;i<n;i++) cin>>p[i].first>>p[i].second; sort(p.begin(),p.end()); vector<int> dp(n,1); int ans=1; for(int i=0;i<n;i++){ for(int j=0;j<i;j++){ if(p[j].first<p[i].first && p[j].second<p[i].second) dp[i]=max(dp[i],dp[j]+1); } ans=max(ans,dp[i]); } cout<<ans<<'\\n'; return 0; }\n",
+  "final_output_or_verdict": "Passes the offline tests."
+}
+

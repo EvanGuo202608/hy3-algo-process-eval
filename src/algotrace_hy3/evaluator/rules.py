@@ -136,6 +136,37 @@ def evaluate_process_rules(solution: Dict[str, Any]) -> Dict[str, Any]:
                     "warnings": warnings,
                 }
 
+    if solution.get("problem_id") == "C01-rising-points":
+        bad_markers = [
+            "non-decreasing",
+            "nondecreasing",
+            "allowing equality",
+            "same x or same y may still be chained",
+            "相同 x",
+            "相同y",
+            "坐标相等也可以",
+            "<=",
+            "using <= in the transition is equivalent",
+        ]
+        for step_id, text in iter_step_text(solution):
+            lowered = text.lower()
+            if any(marker.lower() in lowered for marker in bad_markers):
+                return {
+                    "process_correct": False,
+                    "first_error_step": step_id,
+                    "primary_error_type": "E5",
+                    "secondary_error_types": ["E3", "E6"],
+                    "severity": "high",
+                    "confidence": 0.87,
+                    "evidence": (
+                        "C01 requires both coordinates to be strictly increasing. "
+                        "Allowing equality or treating <= as equivalent can chain "
+                        "points with the same x or the same y, which violates the "
+                        "problem specification and fails duplicate-coordinate cases."
+                    ),
+                    "warnings": warnings,
+                }
+
     return {
         "process_correct": True,
         "first_error_step": None,

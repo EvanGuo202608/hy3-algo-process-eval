@@ -1,0 +1,20 @@
+problem_id: C01-rising-points
+must_have_steps:
+  - "Sort points so earlier candidates can be considered before later candidates."
+  - "Define dp[i] as the longest valid sequence ending at point i."
+  - "Transition only from j to i when both x_j < x_i and y_j < y_i."
+  - "Handle duplicate points, equal x, and equal y as invalid adjacent choices."
+common_error_patterns:
+  - error_type: E2
+    description: "Reduces the problem to 1D LIS without handling equal x or equal y correctly."
+  - error_type: E3
+    description: "Uses non-decreasing coordinates in the proof even though the specification requires strict increase."
+  - error_type: E5
+    description: "Allows points with the same x or same y in a sequence."
+  - error_type: E6
+    description: "Updates dp with <= comparisons or forgets to sort points before DP."
+gold_cases:
+  - fixtures/c01_rising_points/correct.json
+  - fixtures/c01_rising_points/wrong_process_right_code.json
+  - fixtures/c01_rising_points/wrong_code_nondecreasing.json
+
