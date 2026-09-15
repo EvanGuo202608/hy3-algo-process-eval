@@ -1,0 +1,18 @@
+problem_id: B02-cut-height
+must_have_steps:
+  - "Define collected wood for cut height x as sum(max(0, h_i - x))."
+  - "State that collected wood is non-increasing as x increases."
+  - "Binary search for the maximum feasible height."
+  - "Use 64-bit accumulation for collected wood."
+common_error_patterns:
+  - error_type: E3
+    description: "Reverses the monotonic direction or cannot justify binary search."
+  - error_type: E5
+    description: "Uses 32-bit int for total wood or has off-by-one binary search boundaries."
+  - error_type: E4
+    description: "Uses linear scan over all possible heights when height can be large."
+gold_cases:
+  - fixtures/b02_cut_height/correct.json
+  - fixtures/b02_cut_height/wrong_process_right_code.json
+  - fixtures/b02_cut_height/wrong_code_int_overflow.json
+

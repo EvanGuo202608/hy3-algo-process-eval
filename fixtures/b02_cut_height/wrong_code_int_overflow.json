@@ -1,0 +1,36 @@
+{
+  "problem_id": "B02-cut-height",
+  "problem_understanding": "Binary search a cut height that provides enough wood.",
+  "steps": [
+    {
+      "step_id": 1,
+      "kind": "observation",
+      "claim": "Collected wood is non-increasing as height increases.",
+      "justification": "Raising the saw height removes less wood.",
+      "depends_on": []
+    },
+    {
+      "step_id": 2,
+      "kind": "implementation",
+      "claim": "It is safe to use int total for collected wood; it will not overflow.",
+      "justification": "Each tree height fits in int.",
+      "depends_on": [1]
+    },
+    {
+      "step_id": 3,
+      "kind": "algorithm",
+      "claim": "Binary search the maximum feasible cut height.",
+      "justification": "Feasible heights are monotonic.",
+      "depends_on": [1, 2]
+    }
+  ],
+  "algorithm": "Binary search with int accumulation.",
+  "correctness_argument": "The binary search idea is right, but int accumulation can overflow on large sums.",
+  "time_complexity": "O(n log H)",
+  "space_complexity": "O(n)",
+  "boundary_cases": ["ordinary small values"],
+  "code_language": "cpp17",
+  "code": "#include <algorithm>\n#include <iostream>\n#include <vector>\nusing namespace std;\nstatic bool ok(const vector<int>& h,int cut,int need){ int total=0; for(int x:h){ if(x>cut) total+=x-cut; if(total>=need) return true; } return total>=need; }\nint main(){ int n, need; if(!(cin>>n>>need)) return 0; vector<int> h(n); int hi=0; for(int i=0;i<n;i++){ cin>>h[i]; hi=max(hi,h[i]); } int lo=0, ans=0; while(lo<=hi){ int mid=lo+(hi-lo)/2; if(ok(h,mid,need)){ ans=mid; lo=mid+1; } else hi=mid-1; } cout<<ans<<'\\n'; return 0; }\n",
+  "final_output_or_verdict": "Fails when collected wood exceeds 32-bit range."
+}
+

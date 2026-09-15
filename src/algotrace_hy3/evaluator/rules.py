@@ -106,6 +106,36 @@ def evaluate_process_rules(solution: Dict[str, Any]) -> Dict[str, Any]:
                     "warnings": warnings,
                 }
 
+    if solution.get("problem_id") == "B02-cut-height":
+        bad_markers = [
+            "木材量随高度增加而增加",
+            "wood increases as height increases",
+            "higher cut gives more wood",
+            "increase with height",
+            "单调递增",
+            "use int for total wood",
+            "int total",
+            "不会溢出",
+        ]
+        for step_id, text in iter_step_text(solution):
+            lowered = text.lower()
+            if any(marker.lower() in lowered for marker in bad_markers):
+                return {
+                    "process_correct": False,
+                    "first_error_step": step_id,
+                    "primary_error_type": "E3",
+                    "secondary_error_types": ["E5", "E4"],
+                    "severity": "high",
+                    "confidence": 0.88,
+                    "evidence": (
+                        "B02 relies on the monotonic fact that collected wood is "
+                        "non-increasing as the cut height increases, and the sum can "
+                        "exceed 32-bit integer range. Reversing monotonicity or claiming "
+                        "int accumulation is safe makes the process invalid."
+                    ),
+                    "warnings": warnings,
+                }
+
     return {
         "process_correct": True,
         "first_error_step": None,

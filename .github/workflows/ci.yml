@@ -16,11 +16,12 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y g++
       - name: Validate catalog
         run: python3 scripts/validate_problem_catalog.py
-      - name: Reproduce A01, A02, and B01 reference solutions
+      - name: Reproduce A01, A02, B01, and B02 reference solutions
         run: |
           python3 scripts/reproduce_problem.py --problem A01-pack-cost
           python3 scripts/reproduce_problem.py --problem A02-interval-removal
           python3 scripts/reproduce_problem.py --problem B01-pairing
+          python3 scripts/reproduce_problem.py --problem B02-cut-height
       - name: Run offline unit tests
         run: python3 -m unittest discover -s tests -q
       - name: Run A01 demo
@@ -29,3 +30,5 @@ jobs:
         run: PYTHONPATH=src python3 -m algotrace_hy3 demo --problem A02-interval-removal --fixture fixtures/a02_interval_removal/wrong_process_right_code.json
       - name: Run B01 demo
         run: PYTHONPATH=src python3 -m algotrace_hy3 demo --problem B01-pairing --fixture fixtures/b01_pairing/wrong_process_right_code.json
+      - name: Run B02 demo
+        run: PYTHONPATH=src python3 -m algotrace_hy3 demo --problem B02-cut-height --fixture fixtures/b02_cut_height/wrong_process_right_code.json

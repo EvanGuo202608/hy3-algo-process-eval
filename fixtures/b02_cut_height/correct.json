@@ -1,0 +1,50 @@
+{
+  "problem_id": "B02-cut-height",
+  "problem_understanding": "Choose the maximum saw height so the collected wood is at least the required amount.",
+  "steps": [
+    {
+      "step_id": 1,
+      "kind": "observation",
+      "claim": "For a cut height x, collected wood is sum(max(0, h_i - x)).",
+      "justification": "Only the part above the saw height is collected.",
+      "depends_on": []
+    },
+    {
+      "step_id": 2,
+      "kind": "observation",
+      "claim": "Collected wood is non-increasing as x increases.",
+      "justification": "Raising the saw height never increases any tree's contribution.",
+      "depends_on": [1]
+    },
+    {
+      "step_id": 3,
+      "kind": "algorithm",
+      "claim": "Binary search the maximum feasible height.",
+      "justification": "Feasibility is monotonic: if height x is feasible, every lower height is also feasible.",
+      "depends_on": [2]
+    },
+    {
+      "step_id": 4,
+      "kind": "implementation",
+      "claim": "Use 64-bit integers for the accumulated wood total.",
+      "justification": "The sum of many large heights can exceed 32-bit integer range.",
+      "depends_on": [1]
+    },
+    {
+      "step_id": 5,
+      "kind": "complexity",
+      "claim": "The algorithm runs in O(n log H) time and O(n) space.",
+      "justification": "Each check scans n trees, and binary search tries O(log H) heights.",
+      "depends_on": [3]
+    }
+  ],
+  "algorithm": "Binary search cut height between 0 and max height. If collected wood is at least need, record the height and search higher; otherwise search lower.",
+  "correctness_argument": "By monotonicity, feasible heights form a prefix of the integer range. Binary search maintains the best feasible height seen and returns the maximum feasible value.",
+  "time_complexity": "O(n log H)",
+  "space_complexity": "O(n)",
+  "boundary_cases": ["need = 0", "single tree", "answer = 0", "large sum requiring long long"],
+  "code_language": "cpp17",
+  "code": "#include <algorithm>\n#include <iostream>\n#include <vector>\nusing namespace std;\nstatic bool ok(const vector<long long>& h,long long cut,long long need){ long long total=0; for(long long x:h){ if(x>cut) total+=x-cut; if(total>=need) return true; } return total>=need; }\nint main(){ int n; long long need; if(!(cin>>n>>need)) return 0; vector<long long> h(n); long long hi=0; for(int i=0;i<n;i++){ cin>>h[i]; hi=max(hi,h[i]); } long long lo=0, ans=0; while(lo<=hi){ long long mid=lo+(hi-lo)/2; if(ok(h,mid,need)){ ans=mid; lo=mid+1; } else hi=mid-1; } cout<<ans<<'\\n'; return 0; }\n",
+  "final_output_or_verdict": "Outputs the maximum feasible cut height."
+}
+
