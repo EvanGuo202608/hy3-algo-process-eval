@@ -46,6 +46,7 @@ python3 scripts/run_demo.py --problem C01-rising-points --fixture fixtures/c01_r
 python3 scripts/run_demo.py --problem C02-minimum-network --fixture fixtures/c02_minimum_network/wrong_process_right_code.json
 python3 scripts/run_demo.py --problem D01-range-add-sum --fixture fixtures/d01_range_add_sum/wrong_process_right_code.json
 python3 -m unittest discover -s tests -q
+python3 scripts/build_acceptance_docs.py
 ```
 
 也可以使用包入口：
@@ -63,6 +64,7 @@ demo 默认展示 `A01-pack-cost` 中“代码通过测试，但公开推理过�
 - [x] 完成阶段 1：20 题候选矩阵与 8 题 MVP 选题
 - [x] 完成阶段 2 最小纵向切片：A01/A02/B01/B02/C01/C02/D01 题目、参考解、测试、fixture、规则评估和 CLI demo
 - [x] 将 D01 调整为验收版简化线段树：区间加、区间求和，保留 lazy propagation 核心
+- [x] 完成验收包装：验收清单、MVP 总结、最终提交说明、2 分钟 demo 脚本、Word/PDF 导出版
 - [ ] 完成全部 8 题 MVP 的参考解、生成器、检查器和标注轨迹
 - [ ] 接入真实 Hy3 端点并保存脱敏运行记录
 - [ ] 完成定位准确率、误报率、人工抽检和最终报告
@@ -76,6 +78,10 @@ demo 默认展示 `A01-pack-cost` 中“代码通过测试，但公开推理过�
 - [20 题候选目录](benchmarks/problem_catalog.yaml)
 - [标注规范](annotations/annotation_guideline.md)
 - [Gold 标签草稿](annotations/gold.jsonl)
+- [验收清单](ACCEPTANCE_CHECKLIST.md)
+- [MVP 验收总结](docs/reports/mvp_summary.md)
+- [最终提交说明](docs/reports/final_submission_note.md)
+- [2 分钟 demo 脚本](demo/demo_script.md)
 
 ## 目录结构
 
@@ -98,6 +104,8 @@ fixtures/c02_minimum_network/      C02 离线结构化解答样本
 fixtures/d01_range_add_sum/        D01 离线结构化解答样本
 annotations/                       标注规范和 gold 标签草稿
 scripts/                           复现、校验和 demo 脚本
+demo/                              2 分钟演示脚本
+docs/reports/                      验收总结和最终提交说明
 tests/                             无密钥单元测试
 docs/planning/                     阶段规划文档
 ```

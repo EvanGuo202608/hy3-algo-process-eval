@@ -14,6 +14,8 @@ jobs:
           python-version: "3.11"
       - name: Install C++ compiler
         run: sudo apt-get update && sudo apt-get install -y g++
+      - name: Install document dependencies
+        run: python3 -m pip install python-docx reportlab
       - name: Validate catalog
         run: python3 scripts/validate_problem_catalog.py
       - name: Reproduce A01, A02, B01, B02, C01, C02, and D01 reference solutions
@@ -41,3 +43,5 @@ jobs:
         run: PYTHONPATH=src python3 -m algotrace_hy3 demo --problem C02-minimum-network --fixture fixtures/c02_minimum_network/wrong_process_right_code.json
       - name: Run D01 demo
         run: PYTHONPATH=src python3 -m algotrace_hy3 demo --problem D01-range-add-sum --fixture fixtures/d01_range_add_sum/wrong_process_right_code.json
+      - name: Build acceptance documents
+        run: python3 scripts/build_acceptance_docs.py

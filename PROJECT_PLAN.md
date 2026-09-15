@@ -6,7 +6,7 @@
 > **任务方向：** 犀牛鸟开源·实战任务 2「可验证场景：过程评估与错误定位」—算法竞赛  
 > **规划版本：** v1.0  
 > **版本日期：** 2026-09-06  
-> **当前状态：** 阶段 0 和阶段 1 已完成；公开仓库已创建；阶段 2 已完成 A01/A02/B01/B02/C01/C02/D01 离线纵向切片，工程骨架继续扩展中；D01 采用区间加/区间求和的验收版简化实现
+> **当前状态：** 阶段 0 和阶段 1 已完成；公开仓库已创建；阶段 2 已完成 A01/A02/B01/B02/C01/C02/D01 离线纵向切片；已补验收清单、MVP 总结、最终提交说明和 demo 脚本；D01 采用区间加/区间求和的验收版简化实现
 > **项目声明：** 本项目是郭昊杨参与犀牛鸟开源实战任务的个人/活动作品，非腾讯官方发布。
 
 ---
@@ -1211,7 +1211,7 @@ python3 -m unittest discover -s tests -q
 #### 当前状态
 
 ```text
-进行中：已完成 A01-pack-cost、A02-interval-removal、B01-pairing、B02-cut-height、C01-rising-points、C02-minimum-network 与 D01-range-add-sum 离线纵向切片、结构化解答校验、规则评估、CLI demo 和无密钥测试；D01 是线段树 lazy propagation 简化验收版
+进行中：已完成 A01-pack-cost、A02-interval-removal、B01-pairing、B02-cut-height、C01-rising-points、C02-minimum-network 与 D01-range-add-sum 离线纵向切片、结构化解答校验、规则评估、CLI demo、无密钥测试和验收包装；D01 是线段树 lazy propagation 简化验收版
 ```
 
 ---
@@ -1613,6 +1613,8 @@ Apache License 2.0
 - [x] 建立第七题 D01 简化纵向切片；
 - [x] 添加无密钥测试；
 - [x] 添加基础 CI；
+- [x] 补充验收清单、MVP 总结、最终提交说明和 demo 脚本；
+- [x] 导出验收文档 Word/PDF 双版本；
 - [ ] 扩展 D02 题目目录、参考解、生成器和 fixtures，或在时间不足时先冻结 7 题验收版；
 - [ ] 实现更完整的受限执行器安全说明；
 - [ ] 接入 Hy3 在线调用并保存脱敏日志。

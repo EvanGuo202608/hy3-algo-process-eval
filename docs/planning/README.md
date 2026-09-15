@@ -10,12 +10,16 @@
 - `stage1_problem_selection.md`：阶段 1 选题与评测集设计 Markdown；
 - `stage1_problem_selection_v1.docx`：阶段 1 Word 正式版；
 - `stage1_problem_selection_v1.pdf`：阶段 1 PDF 正式版。
+- `../reports/mvp_summary.md`：MVP 验收总结；
+- `../reports/mvp_summary.docx` / `../reports/mvp_summary.pdf`：MVP 验收总结正式版；
+- `../reports/final_submission_note.md`：最终提交说明；
+- `../reports/final_submission_note.docx` / `../reports/final_submission_note.pdf`：最终提交说明正式版。
 
 ## 当前进度
 
 - 阶段 0：已完成；
 - 阶段 1：已完成 20 题候选矩阵和 8 题 MVP 选题；
-- 阶段 2：已完成 A01/A02/B01/B02/C01/C02/D01 离线纵向切片，工程骨架继续扩展中；D01 为区间加/区间求和的线段树简化验收版；
+- 阶段 2：已完成 A01/A02/B01/B02/C01/C02/D01 离线纵向切片和验收包装；D01 为区间加/区间求和的线段树简化验收版；
 - 真实 Hy3 实验：尚未开始；
 - 最终实验结果和 demo：尚未生成。
 
