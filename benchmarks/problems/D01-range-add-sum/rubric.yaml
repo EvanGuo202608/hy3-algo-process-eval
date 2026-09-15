@@ -1,0 +1,22 @@
+problem_id: D01-range-add-sum
+variant_note: "Simplified D01 MVP: range add + range sum only, not full affine multiplication."
+must_have_steps:
+  - "Build a segment tree whose node stores the sum of its interval."
+  - "For a fully covered range-add node, add delta * interval_length to the node sum."
+  - "Accumulate lazy add tags for fully covered updates."
+  - "Push lazy tags to children before partially recursing in update or query."
+  - "Use 64-bit integers for sums and updates."
+common_error_patterns:
+  - error_type: E6
+    description: "Updates a covered node by delta instead of delta * interval length."
+  - error_type: E6
+    description: "Forgets pushdown before partial query or partial update."
+  - error_type: E5
+    description: "Uses 32-bit int for sums or mishandles 1-indexed closed intervals."
+  - error_type: E4
+    description: "Uses O(nq) simulation while claiming segment-tree complexity."
+gold_cases:
+  - fixtures/d01_range_add_sum/correct.json
+  - fixtures/d01_range_add_sum/wrong_process_right_code.json
+  - fixtures/d01_range_add_sum/wrong_code_no_length.json
+

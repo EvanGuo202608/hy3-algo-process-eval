@@ -37,12 +37,14 @@ python3 scripts/reproduce_problem.py --problem B01-pairing
 python3 scripts/reproduce_problem.py --problem B02-cut-height
 python3 scripts/reproduce_problem.py --problem C01-rising-points
 python3 scripts/reproduce_problem.py --problem C02-minimum-network
+python3 scripts/reproduce_problem.py --problem D01-range-add-sum
 python3 scripts/run_demo.py --problem A01-pack-cost
 python3 scripts/run_demo.py --problem A02-interval-removal --fixture fixtures/a02_interval_removal/wrong_process_right_code.json
 python3 scripts/run_demo.py --problem B01-pairing --fixture fixtures/b01_pairing/wrong_process_right_code.json
 python3 scripts/run_demo.py --problem B02-cut-height --fixture fixtures/b02_cut_height/wrong_process_right_code.json
 python3 scripts/run_demo.py --problem C01-rising-points --fixture fixtures/c01_rising_points/wrong_process_right_code.json
 python3 scripts/run_demo.py --problem C02-minimum-network --fixture fixtures/c02_minimum_network/wrong_process_right_code.json
+python3 scripts/run_demo.py --problem D01-range-add-sum --fixture fixtures/d01_range_add_sum/wrong_process_right_code.json
 python3 -m unittest discover -s tests -q
 ```
 
@@ -52,14 +54,15 @@ python3 -m unittest discover -s tests -q
 PYTHONPATH=src python3 -m algotrace_hy3 demo --problem A01-pack-cost
 ```
 
-demo 默认展示 `A01-pack-cost` 中“代码通过测试，但公开推理过程使用了错误的整数除法依据”的样本；也可以切换到 `A02-interval-removal` 展示“端点处理解释错误但代码正确”的样本，切换到 `B01-pairing` 展示“贪心证明错误但代码正确”的样本，切换到 `B02-cut-height` 展示“二分单调性解释反向但代码正确”的样本，切换到 `C01-rising-points` 展示“DP 严格递增条件解释错误但代码正确”的样本，或切换到 `C02-minimum-network` 展示“MST 忽略判环但代码正确”的样本。
+demo 默认展示 `A01-pack-cost` 中“代码通过测试，但公开推理过程使用了错误的整数除法依据”的样本；也可以切换到 `A02-interval-removal` 展示“端点处理解释错误但代码正确”的样本，切换到 `B01-pairing` 展示“贪心证明错误但代码正确”的样本，切换到 `B02-cut-height` 展示“二分单调性解释反向但代码正确”的样本，切换到 `C01-rising-points` 展示“DP 严格递增条件解释错误但代码正确”的样本，切换到 `C02-minimum-network` 展示“MST 忽略判环但代码正确”的样本，或切换到 `D01-range-add-sum` 展示“线段树区间更新漏乘区间长度但代码正确”的样本。
 
 ## 当前进度
 
 - [x] 完成原始任务书核对
 - [x] 完成阶段 0 需求追踪与项目规划
 - [x] 完成阶段 1：20 题候选矩阵与 8 题 MVP 选题
-- [x] 完成阶段 2 最小纵向切片：A01/A02/B01/B02/C01/C02 题目、参考解、测试、fixture、规则评估和 CLI demo
+- [x] 完成阶段 2 最小纵向切片：A01/A02/B01/B02/C01/C02/D01 题目、参考解、测试、fixture、规则评估和 CLI demo
+- [x] 将 D01 调整为验收版简化线段树：区间加、区间求和，保留 lazy propagation 核心
 - [ ] 完成全部 8 题 MVP 的参考解、生成器、检查器和标注轨迹
 - [ ] 接入真实 Hy3 端点并保存脱敏运行记录
 - [ ] 完成定位准确率、误报率、人工抽检和最终报告
@@ -85,12 +88,14 @@ benchmarks/problems/B01-pairing/ 第三题纵向切片
 benchmarks/problems/B02-cut-height/ 第四题纵向切片
 benchmarks/problems/C01-rising-points/ 第五题纵向切片
 benchmarks/problems/C02-minimum-network/ 第六题纵向切片
+benchmarks/problems/D01-range-add-sum/ 第七题纵向切片，D01 简化验收版
 fixtures/a01_pack_cost/            A01 离线结构化解答样本
 fixtures/a02_interval_removal/     A02 离线结构化解答样本
 fixtures/b01_pairing/              B01 离线结构化解答样本
 fixtures/b02_cut_height/           B02 离线结构化解答样本
 fixtures/c01_rising_points/        C01 离线结构化解答样本
 fixtures/c02_minimum_network/      C02 离线结构化解答样本
+fixtures/d01_range_add_sum/        D01 离线结构化解答样本
 annotations/                       标注规范和 gold 标签草稿
 scripts/                           复现、校验和 demo 脚本
 tests/                             无密钥单元测试

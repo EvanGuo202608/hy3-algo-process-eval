@@ -1,0 +1,29 @@
+{
+  "problem_id": "D01-range-add-sum",
+  "problem_understanding": "Maintain an array with range-add updates and range-sum queries.",
+  "steps": [
+    {
+      "step_id": 1,
+      "kind": "observation",
+      "claim": "A covered segment sum should increase by delta * interval_length.",
+      "justification": "Every element in that segment increases by delta.",
+      "depends_on": []
+    },
+    {
+      "step_id": 2,
+      "kind": "implementation",
+      "claim": "The code adds only delta to sum[o] for a fully covered segment.",
+      "justification": "This accidentally treats the segment as one element.",
+      "depends_on": [1]
+    }
+  ],
+  "algorithm": "Segment tree with a faulty apply function.",
+  "correctness_argument": "The intended invariant is correct, but the implementation violates it.",
+  "time_complexity": "O((n + q) log n)",
+  "space_complexity": "O(n)",
+  "boundary_cases": ["full-cover update", "point query after full-cover update"],
+  "code_language": "cpp17",
+  "code": "#include <iostream>\n#include <vector>\nusing namespace std;\nstruct SegmentTree{ int n; vector<long long> sum,lazy; SegmentTree(const vector<long long>&a){ n=(int)a.size()-1; sum.assign(4*n+4,0); lazy.assign(4*n+4,0); build(1,1,n,a);} void build(int o,int l,int r,const vector<long long>&a){ if(l==r){sum[o]=a[l]; return;} int m=(l+r)/2; build(o*2,l,m,a); build(o*2+1,m+1,r,a); sum[o]=sum[o*2]+sum[o*2+1]; } void apply(int o,int l,int r,long long d){ sum[o]+=d; lazy[o]+=d; } void push(int o,int l,int r){ if(lazy[o]==0||l==r) return; int m=(l+r)/2; apply(o*2,l,m,lazy[o]); apply(o*2+1,m+1,r,lazy[o]); lazy[o]=0; } void add(int o,int l,int r,int ql,int qr,long long d){ if(ql<=l&&r<=qr){ apply(o,l,r,d); return;} push(o,l,r); int m=(l+r)/2; if(ql<=m) add(o*2,l,m,ql,qr,d); if(m<qr) add(o*2+1,m+1,r,ql,qr,d); sum[o]=sum[o*2]+sum[o*2+1]; } long long query(int o,int l,int r,int ql,int qr){ if(ql<=l&&r<=qr) return sum[o]; push(o,l,r); int m=(l+r)/2; long long ans=0; if(ql<=m) ans+=query(o*2,l,m,ql,qr); if(m<qr) ans+=query(o*2+1,m+1,r,ql,qr); return ans; }};\nint main(){ ios::sync_with_stdio(false); cin.tie(nullptr); int n,q; if(!(cin>>n>>q)) return 0; vector<long long>a(n+1); for(int i=1;i<=n;i++) cin>>a[i]; SegmentTree st(a); while(q--){ int t,l,r; cin>>t>>l>>r; if(t==1){ long long x; cin>>x; st.add(1,1,n,l,r,x); } else cout<<st.query(1,1,n,l,r)<<'\\n'; } return 0; }\n",
+  "final_output_or_verdict": "Fails full-cover and pushdown tests because apply omits interval length."
+}
+

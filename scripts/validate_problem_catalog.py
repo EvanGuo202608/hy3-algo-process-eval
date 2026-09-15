@@ -21,7 +21,7 @@ REQUIRED_MVP = {
     "B02-cut-height",
     "C01-rising-points",
     "C02-minimum-network",
-    "D01-range-affine-sum",
+    "D01-range-add-sum",
     "D02-route-upgrade",
 }
 
@@ -64,4 +64,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

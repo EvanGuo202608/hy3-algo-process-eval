@@ -107,7 +107,7 @@ P14080《最小生成树》没有进入候选矩阵。该题要求评估删去�
 | B02-cut-height | P1873 | B | 单调判定与二分答案 | O(n log H) | 单调方向、最大可行值、64 位累加 |
 | C01-rising-points | P8816 | C | 按坐标排序的动态规划 | O(n²) | 状态含义、可添加点预算、转移条件 |
 | C02-minimum-network | P3366 | C | Kruskal 与并查集 | O(m log m) | 割性质、连通性、并查集实现 |
-| D01-range-affine-sum | P3373 | D | 维护乘法和加法标记的线段树 | O((n+q) log n) | 标记复合顺序、模运算、区间长度 |
+| D01-range-add-sum | P3373 | D | 验收版简化线段树：区间加、区间求和 | O((n+q) log n) | lazy 下传、区间长度、64 位求和 |
 | D02-route-upgrade | P2680 | D | LCA、路径统计、二分答案 | O((n+m) log n log W) 级别 | 多模块依赖、可行性证明、树上差分 |
 
 ### 7.1 A01 pack cost

@@ -1,0 +1,30 @@
+problem_id: D01-range-add-sum
+title: Range Add Range Sum
+source_platform: Luogu
+source_problem_id: P3373
+source_url: https://www.luogu.com.cn/problem/P3373
+source_note: "Used for discovery and difficulty reference only; this MVP stores a simplified self-written range-add/range-sum segment-tree specification and independent tests."
+license_or_usage_note: "Do not copy private tests or third-party solutions. This is a simplified validation-oriented variant, not a full reproduction of P3373."
+accessed_at: "2026-09-15"
+difficulty:
+  external_label: "普及+/提高-"
+  internal_tier: D
+  reasoning: "Simplified D01 keeps segment tree lazy propagation, range updates, and range queries while avoiding affine multiplication under time pressure."
+algorithms:
+  - segment_tree
+  - lazy_propagation
+  - range_add
+  - range_sum
+expected_error_types:
+  - E4
+  - E5
+  - E6
+limits:
+  time_ms: 1000
+  memory_mb: 128
+reproducibility:
+  generator_seed: 20260906
+  reference_solution: true
+  checker: true
+  offline_tests: true
+

@@ -199,6 +199,37 @@ def evaluate_process_rules(solution: Dict[str, Any]) -> Dict[str, Any]:
                     "warnings": warnings,
                 }
 
+    if solution.get("problem_id") == "D01-range-add-sum":
+        bad_markers = [
+            "add delta to the node sum",
+            "adds only delta to sum",
+            "sum[o]+=d;",
+            "one delta records the update",
+            "不乘区间长度",
+            "只加 delta",
+            "只加一次",
+            "无需下传",
+            "no pushdown",
+        ]
+        for step_id, text in iter_step_text(solution):
+            lowered = text.lower()
+            if any(marker.lower() in lowered for marker in bad_markers):
+                return {
+                    "process_correct": False,
+                    "first_error_step": step_id,
+                    "primary_error_type": "E6",
+                    "secondary_error_types": ["E5"],
+                    "severity": "high",
+                    "confidence": 0.89,
+                    "evidence": (
+                        "D01 range-add/range-sum nodes store interval sums. A full-cover "
+                        "add must change the node sum by delta * interval_length and "
+                        "partial operations must push lazy tags before descending. "
+                        "Adding only delta or skipping pushdown breaks the segment-tree invariant."
+                    ),
+                    "warnings": warnings,
+                }
+
     return {
         "process_correct": True,
         "first_error_step": None,

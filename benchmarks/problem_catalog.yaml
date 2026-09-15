@@ -34,7 +34,7 @@ candidates:
   - {candidate_id: C12, problem_id: P2058, title: "海港", url: "https://www.luogu.com.cn/problem/P2058", luogu_reference: "普及", algorithms: [sliding_window, counting], internal_level: C, error_types: [E1, E5, E6], score: 8, selection: reserve}
   - {candidate_id: C13, problem_id: P8816, title: "上升点列", url: "https://www.luogu.com.cn/problem/P8816", luogu_reference: "普及", algorithms: [sorting, dynamic_programming], internal_level: C, error_types: [E2, E3, E5], score: 10, selection: mvp, internal_id: C01-rising-points}
   - {candidate_id: C14, problem_id: P3366, title: "最小生成树", url: "https://www.luogu.com.cn/problem/P3366", luogu_reference: "模板题；颜色单独记录", algorithms: [kruskal, disjoint_set_union], internal_level: C, error_types: [E2, E3, E5, E6], score: 10, selection: mvp, internal_id: C02-minimum-network}
-  - {candidate_id: C15, problem_id: P3373, title: "线段树 2", url: "https://www.luogu.com.cn/problem/P3373", luogu_reference: "普及+/提高-", algorithms: [segment_tree, lazy_propagation, affine_composition], internal_level: D, error_types: [E4, E5, E6], score: 10, selection: mvp, internal_id: D01-range-affine-sum}
+  - {candidate_id: C15, problem_id: P3373, title: "线段树 2", url: "https://www.luogu.com.cn/problem/P3373", luogu_reference: "普及+/提高-", algorithms: [segment_tree, lazy_propagation, range_add, range_sum, simplified_mvp], internal_level: D, error_types: [E4, E5, E6], score: 10, selection: mvp, internal_id: D01-range-add-sum}
   - {candidate_id: C16, problem_id: P5658, title: "括号树", url: "https://www.luogu.com.cn/problem/P5658", luogu_reference: "普及+/提高-", algorithms: [tree_dp, stack, rollback], internal_level: C, error_types: [E2, E3, E6], score: 9, selection: formal_extension, internal_id: C04-bracket-tree}
   - {candidate_id: C17, problem_id: P7074, title: "方格取数", url: "https://www.luogu.com.cn/problem/P7074", luogu_reference: "普及+/提高-", algorithms: [dynamic_programming, directional_scan], internal_level: C, error_types: [E2, E3, E5], score: 9, selection: formal_extension, internal_id: C03-grid-collection}
   - {candidate_id: C18, problem_id: P4170, title: "涂色", url: "https://www.luogu.com.cn/problem/P4170", luogu_reference: "提高", algorithms: [interval_dp], internal_level: D, error_types: [E2, E3, E5], score: 8, selection: reserve}
@@ -47,7 +47,7 @@ mvp_order:
   - B02-cut-height
   - C01-rising-points
   - C02-minimum-network
-  - D01-range-affine-sum
+  - D01-range-add-sum
   - D02-route-upgrade
 formal_extension_order:
   - B03-merge-cost
@@ -60,4 +60,3 @@ status:
   tests_complete: false
   gold_traces_complete: false
   real_hy3_experiments_complete: false
-
