@@ -1,0 +1,36 @@
+{
+  "problem_id": "B01-pairing",
+  "problem_understanding": "Use sorting to minimize the number of groups under the weight limit.",
+  "steps": [
+    {
+      "step_id": 1,
+      "kind": "observation",
+      "claim": "A natural greedy proof is to pair the lightest people first because they are easiest to fit together.",
+      "justification": "Using small items early seems to leave more room for later choices.",
+      "depends_on": []
+    },
+    {
+      "step_id": 2,
+      "kind": "algorithm",
+      "claim": "The implementation uses the standard heaviest-with-lightest two-pointer method.",
+      "justification": "The code sorts and checks the two ends.",
+      "depends_on": [1]
+    },
+    {
+      "step_id": 3,
+      "kind": "complexity",
+      "claim": "The algorithm is O(n log n).",
+      "justification": "Sorting dominates the scan.",
+      "depends_on": [2]
+    }
+  ],
+  "algorithm": "Sort weights and use the standard two-pointer implementation.",
+  "correctness_argument": "The public proof incorrectly argues from pairing the lightest first, which does not justify the implemented greedy.",
+  "time_complexity": "O(n log n)",
+  "space_complexity": "O(1)",
+  "boundary_cases": ["duplicates", "exact limit"],
+  "code_language": "cpp17",
+  "code": "#include <algorithm>\n#include <iostream>\n#include <vector>\nusing namespace std;\nint main(){ int n, limit; if(!(cin>>n>>limit)) return 0; vector<int> w(n); for(int i=0;i<n;i++) cin>>w[i]; sort(w.begin(), w.end()); int l=0,r=n-1,ans=0; while(l<=r){ if(l<r && w[l]+w[r]<=limit) l++; r--; ans++; } cout<<ans<<'\\n'; return 0; }\n",
+  "final_output_or_verdict": "The code is correct, but the process proof is not."
+}
+

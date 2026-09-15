@@ -1,0 +1,43 @@
+{
+  "problem_id": "B01-pairing",
+  "problem_understanding": "Put all items into the minimum number of groups, each group holding at most two items with total weight at most the limit.",
+  "steps": [
+    {
+      "step_id": 1,
+      "kind": "observation",
+      "claim": "Sort all weights so the lightest and heaviest remaining items are easy to access.",
+      "justification": "Only sums of two weights matter, and sorting supports a two-pointer greedy choice.",
+      "depends_on": []
+    },
+    {
+      "step_id": 2,
+      "kind": "algorithm",
+      "claim": "Consider the heaviest remaining item. If it fits with the lightest remaining item, pair them; otherwise place it alone.",
+      "justification": "If the heaviest cannot fit with the lightest, it cannot fit with any other remaining item. If it can fit with the lightest, pairing them does not hurt any other pair because the lightest is the easiest item to pair.",
+      "depends_on": [1]
+    },
+    {
+      "step_id": 3,
+      "kind": "proof",
+      "claim": "Repeating the heaviest-first choice gives an optimal grouping.",
+      "justification": "Each iteration fixes one group for the heaviest remaining item in a way that is forced or exchange-safe, then leaves the same subproblem on fewer items.",
+      "depends_on": [2]
+    },
+    {
+      "step_id": 4,
+      "kind": "complexity",
+      "claim": "The algorithm runs in O(n log n) time and O(1) extra space beyond the array.",
+      "justification": "Sorting dominates; the two-pointer scan is linear.",
+      "depends_on": [1, 2]
+    }
+  ],
+  "algorithm": "Sort weights. Use two pointers left and right. In each group place weights[right]; if weights[left] + weights[right] <= limit, also place weights[left]. Move pointers and count one group.",
+  "correctness_argument": "The heaviest remaining item must be placed now. If it cannot pair with the lightest, it must be alone. If it can pair with the lightest, there exists an optimal solution with that pair by exchanging the lightest into the heaviest item's group. Induction over remaining items proves optimality.",
+  "time_complexity": "O(n log n)",
+  "space_complexity": "O(1)",
+  "boundary_cases": ["n = 1", "exactly equal to limit", "all items too heavy to pair", "duplicate weights"],
+  "code_language": "cpp17",
+  "code": "#include <algorithm>\n#include <iostream>\n#include <vector>\nusing namespace std;\nint main(){ int n, limit; if(!(cin>>n>>limit)) return 0; vector<int> w(n); for(int i=0;i<n;i++) cin>>w[i]; sort(w.begin(), w.end()); int l=0,r=n-1,ans=0; while(l<=r){ if(l<r && w[l]+w[r]<=limit) l++; r--; ans++; } cout<<ans<<'\\n'; return 0; }\n",
+  "final_output_or_verdict": "Outputs the minimum number of groups."
+}
+

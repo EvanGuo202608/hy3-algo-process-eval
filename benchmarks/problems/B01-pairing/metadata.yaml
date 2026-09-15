@@ -1,0 +1,30 @@
+problem_id: B01-pairing
+title: Pairing
+source_platform: Luogu
+source_problem_id: P1094
+source_url: https://www.luogu.com.cn/problem/P1094
+source_note: "Used for discovery and difficulty reference only; repository stores a self-written specification and independent tests."
+license_or_usage_note: "Do not copy private tests or third-party solutions."
+accessed_at: "2026-09-07"
+difficulty:
+  external_label: "普及-"
+  internal_tier: B
+  reasoning: "Requires sorting, two pointers, and a greedy exchange argument."
+algorithms:
+  - sorting
+  - two_pointers
+  - greedy
+expected_error_types:
+  - E2
+  - E3
+  - E4
+  - E5
+limits:
+  time_ms: 1000
+  memory_mb: 64
+reproducibility:
+  generator_seed: 20260906
+  reference_solution: true
+  checker: true
+  offline_tests: true
+

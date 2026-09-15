@@ -76,6 +76,36 @@ def evaluate_process_rules(solution: Dict[str, Any]) -> Dict[str, Any]:
                     "warnings": warnings,
                 }
 
+    if solution.get("problem_id") == "B01-pairing":
+        bad_markers = [
+            "pair the lightest people first",
+            "two lightest",
+            "最轻的两",
+            "先配最轻",
+            "unit price",
+            "平均",
+            "always pair everyone",
+            "一定两两配对",
+        ]
+        for step_id, text in iter_step_text(solution):
+            lowered = text.lower()
+            if any(marker.lower() in lowered for marker in bad_markers):
+                return {
+                    "process_correct": False,
+                    "first_error_step": step_id,
+                    "primary_error_type": "E3",
+                    "secondary_error_types": ["E2"],
+                    "severity": "high",
+                    "confidence": 0.87,
+                    "evidence": (
+                        "B01 needs the standard two-pointer greedy argument: handle "
+                        "the heaviest remaining person first, pairing with the lightest "
+                        "only if their sum fits. Pairing lightest people first or claiming "
+                        "everyone can always be paired does not justify optimality."
+                    ),
+                    "warnings": warnings,
+                }
+
     return {
         "process_correct": True,
         "first_error_step": None,

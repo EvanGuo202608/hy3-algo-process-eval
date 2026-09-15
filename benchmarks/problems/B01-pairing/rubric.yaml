@@ -1,0 +1,18 @@
+problem_id: B01-pairing
+must_have_steps:
+  - "Sort weights in nondecreasing order."
+  - "Handle the heaviest remaining item in each iteration."
+  - "Pair heaviest with lightest only when their sum fits."
+  - "Give a greedy exchange argument for why this is optimal."
+common_error_patterns:
+  - error_type: E2
+    description: "Uses an invalid greedy such as pairing the two lightest first."
+  - error_type: E3
+    description: "States the two-pointer algorithm but gives no valid proof."
+  - error_type: E5
+    description: "Fails on one remaining item or equal boundary sum."
+gold_cases:
+  - fixtures/b01_pairing/correct.json
+  - fixtures/b01_pairing/wrong_process_right_code.json
+  - fixtures/b01_pairing/wrong_code_lightest_first.json
+
